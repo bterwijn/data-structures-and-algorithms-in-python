@@ -1,6 +1,11 @@
 # Data Structures and Algorithms (DSA) In Python
 
-This  repository is for the students of book [Data Structures and Algorithms In Python](https://coursegalaxy.newzenler.com/courses/data-structures-algorithms-python-masterclass?coupon=GITHUB50) and online courses available on CourseGalaxy. It contains the source code of all the programs used in the book and courses.
+This  repository is for the students of book [Comprehensive Data Structures and Algorithms In Python](https://www.amazon.in/dp/B0H1QH2L11) and online courses available on CourseGalaxy. It contains the source code of all the programs used in the book and courses.
+
+<img width="731" height="916" alt="comprehensive-data-structures-algorithms-python" src="https://github.com/user-attachments/assets/f5b8c7a7-e7d0-43cb-86cf-b5d52d591b70" />
+
+[![comprehensive-data-structures-algorithms-python](https://github.com/user-attachments/assets/f5b8c7a7-e7d0-43cb-86cf-b5d52d591b70)](https://www.amazon.in/dp/B0H1QH2L11)
+
 
 ### About the DSA Masterclass Courses
  * Thoroughly detailed courses with complete working programs
