@@ -2,11 +2,7 @@
 
 This  repository is for the students of book [Comprehensive Data Structures and Algorithms In Python](https://www.amazon.in/dp/B0H1QH2L11) and online courses available on CourseGalaxy. It contains the source code of all the programs used in the book and courses.
 
-<img width="366" height="458" alt="comprehensive-data-structures-algorithms-python" src="https://github.com/user-attachments/assets/10051cd0-4d59-496f-a80a-635f8c2b987d" />
-
-
 [![comprehensive-data-structures-algorithms-python](https://github.com/user-attachments/assets/10051cd0-4d59-496f-a80a-635f8c2b987d)](https://www.amazon.in/dp/B0H1QH2L11)
-
 
 ### About the DSA Masterclass Courses
  * Thoroughly detailed courses with complete working programs
