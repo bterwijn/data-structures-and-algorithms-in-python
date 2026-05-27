@@ -1,0 +1,186 @@
+# undirected_graph.py : Program for traversing an undirected graph through DFS using recursion.
+# Visiting only those vertices that are reachable from start vertex
+# Visiting all vertices
+# Finding discovery time and finishing time of each vertex
+
+INITIAL = 0
+VISITED = 1
+FINISHED = 2
+
+class Vertex:
+	def __init__(self, name):
+		self.name = name
+		self.state = None
+		self.discovery_time = None
+		self.finishing_time = None
+
+class UndirectedGraph:
+	time = None
+
+	def __init__(self, max_size=30):
+		self.nvertices = 0
+		self.nedges = 0
+		self.adj = [ [0 for column in range(max_size)] for row in range(max_size) ]		
+		self.vertex_list = []
+	
+	def insert_vertex(self, vertex_name):
+		self.vertex_list.append(Vertex(vertex_name))
+		self.nvertices += 1
+
+	def _get_index(self, vertex_name):
+		index = 0
+		for name in (vertex.name for vertex in self.vertex_list):
+			if vertex_name == name:
+				return index
+			index += 1
+		raise Exception("Invalid Vertex")
+
+	def insert_edge(self, source, destination):
+		u = self._get_index(source)
+		v = self._get_index(destination)
+
+		if u == v:
+			print("Not a valid edge")
+		elif self.adj[u][v] != 0:
+			print("Edge already present")
+		else:
+			self.adj[u][v] = 1
+			self.adj[v][u] = 1
+			self.nedges += 1
+
+	def display(self):
+		for i in range(self.nvertices):
+			for j in range(self.nvertices):
+				print(self.adj[i][j], end=" ")
+			print()
+
+	def _is_adjacent(self, u, v):
+		return self.adj[u][v] != 0
+
+	def _dfs(self, vertex):
+		print(self.vertex_list[vertex].name, end=" ")
+		self.vertex_list[vertex].state = VISITED
+		UndirectedGraph.time += 1
+		self.vertex_list[vertex].discovery_time = UndirectedGraph.time	# discovery time
+
+		for i in range(self.nvertices):
+			# Checking for adjacent vertices with INITIAL state
+			if self._is_adjacent(vertex,i) and self.vertex_list[i].state==INITIAL:
+				self._dfs(i)
+		
+		self.vertex_list[vertex].state = FINISHED
+		UndirectedGraph.time += 1
+		self.vertex_list[vertex].finishing_time = UndirectedGraph.time	# finishing time
+	
+	def dfs_traversal(self, vertex_name):
+		# Initially all the vertices will have INITIAL state
+		for i in range(self.nvertices):
+			self.vertex_list[i].state = INITIAL
+		
+		UndirectedGraph.time = 0
+		self._dfs(self._get_index(vertex_name))
+		print()
+		
+	def dfs_traversal_all(self, vertex_name):
+		# Initially all the vertices will have INITIAL state
+		for i in range(self.nvertices):
+			self.vertex_list[i].state = INITIAL
+		
+		UndirectedGraph.time = 0
+		self._dfs(self._get_index(vertex_name))
+		
+		for v in range(self.nvertices):
+			if self.vertex_list[v].state == INITIAL:
+				self._dfs(v)
+		print()
+		
+		for v in range(self.nvertices):
+			print("Vertex :", self.vertex_list[v].name, end=" ")
+			print("Discovery Time :", self.vertex_list[v].discovery_time, end=" ")
+			print("Finishing Time :", self.vertex_list[v].finishing_time)
+
+if __name__ == '__main__':
+	
+	u_graph = UndirectedGraph()
+
+	try:
+		# Creating the graph, inserting the vertices and edges
+		# Connected Graph
+		u_graph.insert_vertex("0")
+		u_graph.insert_vertex("1")
+		u_graph.insert_vertex("2")
+		u_graph.insert_vertex("3")
+		u_graph.insert_vertex("4")
+		u_graph.insert_vertex("5")
+		u_graph.insert_vertex("6")
+		u_graph.insert_vertex("7")
+		u_graph.insert_vertex("8")
+		u_graph.insert_vertex("9")
+
+		u_graph.insert_edge("0","1")
+		u_graph.insert_edge("0","3")
+		u_graph.insert_edge("1","2")
+		u_graph.insert_edge("1","4")
+		u_graph.insert_edge("1","5")
+		u_graph.insert_edge("2","3")
+		u_graph.insert_edge("2","5")
+		u_graph.insert_edge("3","6")
+		u_graph.insert_edge("4","7")
+		u_graph.insert_edge("5","6")
+		u_graph.insert_edge("5","7")
+		u_graph.insert_edge("5","8")
+		u_graph.insert_edge("6","9")
+		u_graph.insert_edge("7","8")
+		u_graph.insert_edge("8","9")
+
+		# Not Connected Graph
+		# u_graph.insert_vertex("0")
+		# u_graph.insert_vertex("1")
+		# u_graph.insert_vertex("2")
+		# u_graph.insert_vertex("3")
+		# u_graph.insert_vertex("4")
+		# u_graph.insert_vertex("5")
+		# u_graph.insert_vertex("6")
+		# u_graph.insert_vertex("7")
+		# u_graph.insert_vertex("8")
+		# u_graph.insert_vertex("9")
+		# u_graph.insert_vertex("10")
+		# u_graph.insert_vertex("11")
+		# u_graph.insert_vertex("12")
+		# u_graph.insert_vertex("13")
+		# u_graph.insert_vertex("14")
+
+		# u_graph.insert_edge("0","1")
+		# u_graph.insert_edge("0","2")
+		# u_graph.insert_edge("0","3")
+		# u_graph.insert_edge("2","3")
+
+		# u_graph.insert_edge("4","5")
+		# u_graph.insert_edge("4","6")
+		# u_graph.insert_edge("4","7")
+		# u_graph.insert_edge("4","8")
+		# u_graph.insert_edge("5","7")
+		# u_graph.insert_edge("6","8")
+		# u_graph.insert_edge("6","9")
+
+		# u_graph.insert_edge("10","11")
+		# u_graph.insert_edge("10","12")
+		# u_graph.insert_edge("10","13")
+		# u_graph.insert_edge("11","12")
+		# u_graph.insert_edge("11","13")
+		# u_graph.insert_edge("11","14")
+		# u_graph.insert_edge("13","14")
+
+		# Display the graph
+		u_graph.display()
+		print()
+		
+		# DFS traversal visiting only those vertices that are reachable from start vertex
+		u_graph.dfs_traversal("0");
+
+		# DFS traversal visiting all the vertices
+		u_graph.dfs_traversal_all("0");
+
+	except Exception as e:
+		print(e)
+		
